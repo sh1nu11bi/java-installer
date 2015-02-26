@@ -26,6 +26,11 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 	return w;
 }
 
+void print(char* c) {
+	printf(c);
+	fflush(stdout);
+}
+
 int main(void) {
 	CURL *curl;
 	FILE *fp;
@@ -37,6 +42,10 @@ int main(void) {
 	} else {
 		url = "http://download.oracle.com/otn-pub/java/jdk/8u31-b13/jre-8u31-windows-i586.exe";
 	}
+
+	print("Attempting download: ");
+	print(url);
+	print("\n");
 
 	struct curl_slist *cookies = curl_slist_append(NULL, "Cookie: oraclelicense=accept-securebackup-cookie");
 	curl = curl_easy_init();
@@ -55,7 +64,12 @@ int main(void) {
 		curl_easy_cleanup(curl);
 		fclose(fp);
 
-		system("jre.exe");
+		char *cmd = "jre.exe";
+
+		print("Executing ");
+		print(cmd);
+
+		system(cmd);
 	}
 	return 0;
 }
