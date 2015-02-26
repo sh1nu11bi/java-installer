@@ -1,0 +1,8 @@
+.cproject
+.project
+lib/
+include/
+Debug/
+Release/
+resources/
+.settings
