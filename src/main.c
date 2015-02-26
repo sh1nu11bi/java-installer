@@ -9,7 +9,6 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 int main(void) {
     CURL *curl;
     FILE *fp;
-    CURLcode res;
     char *url = "http://download.oracle.com/otn-pub/java/jdk/8u31-b13/jre-8u31-windows-i586.exe";
     char outfilename[FILENAME_MAX] = "jre.exe";
 
@@ -26,7 +25,7 @@ int main(void) {
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, cookies);
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 
-        res = curl_easy_perform(curl);
+        curl_easy_perform(curl);
         curl_easy_cleanup(curl);
         fclose(fp);
 
