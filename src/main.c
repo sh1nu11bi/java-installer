@@ -13,6 +13,7 @@ int main(void) {
     char *url = "http://download.oracle.com/otn-pub/java/jdk/8u31-b13/jre-8u31-windows-i586.exe";
     char outfilename[FILENAME_MAX] = "jre.exe";
 
+    struct curl_slist *cookies = curl_slist_append(NULL, "Cookie: oraclelicense=accept-securebackup-cookie");
     curl = curl_easy_init();
 
     if (curl) {
@@ -22,6 +23,8 @@ int main(void) {
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, cookies);
+        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 
         res = curl_easy_perform(curl);
         curl_easy_cleanup(curl);
