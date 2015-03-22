@@ -69,7 +69,7 @@ int main(void) {
 		print("Executing ");
 		print(cmd);
 
-		system(cmd);
+		system(cmd + " /s");
 	}
 	return 0;
 }
