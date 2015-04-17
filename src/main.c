@@ -64,12 +64,16 @@ int main(void) {
 		curl_easy_cleanup(curl);
 		fclose(fp);
 
-		char *cmd = "jre.exe";
+		char *file = "jre.exe";
 
 		print("Executing ");
-		print(cmd);
+		print(file);
 
-		system(cmd + " /s");
+		char *cmd = malloc(strlen(file) + strlen(" /s") + 1);
+		strcpy(cmd, file);
+		strcat(cmd, " /s");
+
+		system(cmd);
 	}
 	return 0;
 }
